@@ -1,0 +1,13 @@
+{
+  "name": "cbMortgageCalculator",
+  "version": "1.0.0",
+  "description": "ContentBox mortgage calculator",
+  "main": "Gruntfile.js",
+  "private": "true",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-compress": "^0.14.0",
+    "grunt-contrib-concat": "^0.5.1",
+    "matchdep": "^1.0.0"
+  }
+}
