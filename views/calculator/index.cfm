@@ -6,7 +6,7 @@
 	<!--- mortgage content --->
 	<div class="row">
 
-		<div class="col-md-12">
+		<div class="col-md-12 alert alert-info">
 			<p>La tua rata &egrave; di: <b>&##8364; #rc.results.monthlyPayment#</b>.</p>
 			<p> Costo totale del finanziamento: <b>&##8364; #rc.results.total#</b> di cui 
 			<b>&##8364; #rc.balance#</b> di capitale e 
@@ -38,14 +38,14 @@
 						<cfset prc.CumulativePrincipalPaid=prc.CumulativePrincipalPaid+(rc.results.monthlyPayment-Interest)> 
 						<tr> 
 							<td>#NumberFormat(PaymentNumber)#</td> 
-							<td>#numberFormat(rc.results.monthlyPayment, "0.000")#</td> 
-							<td>#numberFormat(Interest, "0.000")#</td> 
-							<td>#numberFormat(prc.CumulativeInterest, "0.000")#</td> 
-							<td>#numberFormat((rc.results.monthlyPayment-Interest), "0.000")#</td> 
-							<td>#numberFormat(prc.CumulativePrincipalPaid, "0.000")#</td> 
-							<td>#numberFormat((prc.PreviousBalance-(rc.results.monthlyPayment-Interest)), "0.000")#</td> 
+							<td>#numberFormat(rc.results.monthlyPayment, "0.00")#</td> 
+							<td>#numberFormat(Interest, "0.00")#</td> 
+							<td>#numberFormat(prc.CumulativeInterest, "0.00")#</td> 
+							<td>#numberFormat((rc.results.monthlyPayment-Interest), "0.00")#</td> 
+							<td>#numberFormat(prc.CumulativePrincipalPaid, "0.00")#</td> 
+							<td>#numberFormat((prc.PreviousBalance-(rc.results.monthlyPayment-Interest)), "0.00")#</td> 
 						</tr> 
-					   <cfset prc.PreviousBalance=numberFormat((prc.PreviousBalance-(rc.results.monthlyPayment-Interest)), "0.000")>
+					   <cfset prc.PreviousBalance=numberFormat((prc.PreviousBalance-(rc.results.monthlyPayment-Interest)), "0.00")>
 					   <cfset counter= counter+1>
 					   <cfif (counter EQ rc.period)>
 					   	<cfset annualTotal = DecimalFormat(prc.CumulativeInterest + prc.CumulativePrincipalPaid) />
