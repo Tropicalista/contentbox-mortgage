@@ -10,7 +10,7 @@ component{
 		event.paramValue( "balance", "0" );
 		event.paramValue( "rate", "0" );
 		event.paramValue( "term", "0" );
-		event.paramValue( "period", "0" );
+		event.paramValue( "period", 12 );
 		event.paramValue( "isSent", "false" );
 
 		var errors = [];

@@ -27,6 +27,11 @@ component extends="contentbox.models.ui.BaseWidget" singleton{
 
 		var checked = (event.getValue("ammortamento","") Eq "on") ? "checked" : "";
 
+		var periods = [
+    		{"value"= 12, "name"= "Mensile"},
+    		{"value"= 4, "name"= "Trimestrale"},
+    		{"value"= 2, "name"= "Semestrale"}
+   		];
 		// generate comment form
 		saveContent variable="mortgageForm"{
 			writeOutput('
@@ -34,16 +39,12 @@ component extends="contentbox.models.ui.BaseWidget" singleton{
 
 					#html.hiddenField(name="isSent",value=true)#
 
-					#html.textField( name="balance", label="Importo:", required="required", value=event.getValue("balance",""), class="form-control", labelClass="control-label", groupWrapper="div class=form-group" )#
+					#html.textField(name="balance", label="Importo:", required="required", value=event.getValue("balance",""), class="form-control", labelClass="control-label", groupWrapper="div class=form-group" )#
 					#html.textField(name="rate",label="Tasso:",required="required",value=event.getValue("rate",""), class="form-control", labelClass="control-label", groupWrapper="div class=form-group" )#
 					#html.textField(name="term",label="Durata:",required="required",value=event.getValue("term",""), class="form-control", labelClass="control-label", groupWrapper="div class=form-group" )#
 					<div class="frm-group">
 					<label>Frequenza rate:</label>
-					<select name="period" class="form-control">
-						<option value="12">Mensile</option>
-			        	<option value="4">Trimestrale</option>
-			        	<option value="2">Semestrale</option>
-					</select>
+					#html.select( name="period", class="form-control",options=html.options( values=periods, selectedValue=event.getValue("period","") ) )#
 					</div>
 					<div class="checkbox">
 					  <label>
