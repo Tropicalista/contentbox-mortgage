@@ -1,3 +1,9 @@
+<cfscript> 
+function customFormat(x){
+  y = round(arguments.x*100)/100
+  return NumberFormat(y, "9.99");
+}
+</cfscript> 
 <cfoutput>
 	#getInstance("messagebox@cbMessagebox").renderit()#
 
@@ -7,7 +13,7 @@
 	<div class="row">
 
 		<div class="col-md-12 alert alert-info">
-			<p>La tua rata &egrave; di: <b>&##8364; #rc.results.monthlyPayment#</b>.</p>
+			<p>La tua rata &egrave; di: <b>&##8364; #NumberFormat(rc.results.monthlyPayment, "9.99")#</b>.</p>
 			<p> Costo totale del finanziamento: <b>&##8364; #rc.results.total#</b> di cui 
 			<b>&##8364; #rc.balance#</b> di capitale e 
 			<b>&##8364; #DecimalFormat(rc.results.totalInterests)#</b> di interessi, pari al <b>#rc.results.totalInterestsRate#%</b>.
@@ -38,12 +44,12 @@
 						<cfset prc.CumulativePrincipalPaid=prc.CumulativePrincipalPaid+(rc.results.monthlyPayment-Interest)> 
 						<tr> 
 							<td>#NumberFormat(PaymentNumber)#</td> 
-							<td>#numberFormat(rc.results.monthlyPayment, "0.00")#</td> 
-							<td>#numberFormat(Interest, "0.00")#</td> 
-							<td>#numberFormat(prc.CumulativeInterest, "0.00")#</td> 
-							<td>#numberFormat((rc.results.monthlyPayment-Interest), "0.00")#</td> 
-							<td>#numberFormat(prc.CumulativePrincipalPaid, "0.00")#</td> 
-							<td>#numberFormat((prc.PreviousBalance-(rc.results.monthlyPayment-Interest)), "0.00")#</td> 
+							<td>#customFormat(rc.results.monthlyPayment)#</td> 
+							<td>#customFormat(Interest)#</td> 
+							<td>#customFormat(prc.CumulativeInterest)#</td> 
+							<td>#customFormat(rc.results.monthlyPayment-Interest)#</td> 
+							<td>#customFormat(prc.CumulativePrincipalPaid)#</td> 
+							<td>#customFormat((prc.PreviousBalance-(rc.results.monthlyPayment-Interest)))#</td> 
 						</tr> 
 					   <cfset prc.PreviousBalance=numberFormat((prc.PreviousBalance-(rc.results.monthlyPayment-Interest)), "0.00")>
 					   <cfset counter= counter+1>
