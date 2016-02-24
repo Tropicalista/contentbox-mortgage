@@ -106,22 +106,22 @@ component singleton{
 
         if( fa EQ 0 ){
           return a;
-        };
+        }
 
         var fb = f( b );
         if( fb EQ 0 ) {
           return b;
-        };
+        }
 
         var m = ( arguments.a + arguments.b )/2;
         var fm = f( m );
         if ( fm EQ 0 ) {
           return m;
-        };
-        if ( ( arguments.b - arguments.a ) < 1e - 8 ) {
+        }
+        if ( ( arguments.b - arguments.a ) < PrecisionEvaluate( 1E-8 ) ) {
           return m;
-        };
-        if ( ( fa * fm ) < 0 ) {
+        }
+        if ( ( fa * fm ) < 0 ){
           return bisection( arguments.a, m );
         }else{
           return bisection( m, arguments.b );
