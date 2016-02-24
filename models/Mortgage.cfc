@@ -36,6 +36,22 @@ component singleton{
     }
 
     /*
+    * TAEG calculator
+    */
+    function calculateTAEG( mutuo, rata, anni, periodo ) {
+
+        variables.rapporto = arguments.mutuo / arguments.rata;
+        variables.nk = paymentNumber( arguments.anni, arguments.periodo );
+
+        var ik = bisection( 0.00001, 1 ); // bisection algorithm
+
+        var ia = power( ik , arguments.periodo )-1; // calcolo del tasso effettivo annuo
+
+        return rounding( ia * 100 );  //arrotondamento al centesimo
+
+    }
+
+    /*
     * Calculate payment number
     */
     public function paymentNumber( required term, required period ){
@@ -43,7 +59,7 @@ component singleton{
     }
 
     /*
-    * Calculate effective rate
+    * Calculate effective rate and compound interests
     */
     function effectiveRate( principal, rate, months, years ) {
 
@@ -61,7 +77,7 @@ component singleton{
     /*
     * Power function
     */
-    function power( i,n ) {
+    function power( i, n ) {
 
         b = 1 + i;
 
@@ -78,6 +94,43 @@ component singleton{
 
         return NumberFormat( x, '9.99' );
 
+    }
+
+
+    /*
+    * Bisection function
+    */ 
+    function bisection( a, b ){
+
+        var fa = f( a );
+
+        if( fa EQ 0 ){
+          return a;
+        };
+
+        var fb = f( b );
+        if( fb EQ 0 ) {
+          return b;
+        };
+
+        var m = ( arguments.a + arguments.b )/2;
+        var fm = f( m );
+        if ( fm EQ 0 ) {
+          return m;
+        };
+        if ( ( arguments.b - arguments.a ) < 1e - 8 ) {
+          return m;
+        };
+        if ( ( fa * fm ) < 0 ) {
+          return bisection( arguments.a, m );
+        }else{
+          return bisection( m, arguments.b );
+        }
+
+    };
+
+    function f( x ){
+        return ( 1 - variables.rapporto * arguments.x ) * power( arguments.x, variables.nk )-1;
     }
 
 }

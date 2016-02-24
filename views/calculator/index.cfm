@@ -1,6 +1,9 @@
 <cfscript> 
 function customFormat(x){
   y = round(arguments.x*100)/100
+  if(y<0){
+  	return 0;
+  }
   return NumberFormat(y, "9.99");
 }
 </cfscript> 
