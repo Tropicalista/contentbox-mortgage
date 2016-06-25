@@ -1,26 +1,3 @@
-/**
-********************************************************************************
-ContentBox - A Modular Content Platform
-Copyright 2012 by Luis Majano and Ortus Solutions, Corp
-www.gocontentbox.org | www.luismajano.com | www.ortussolutions.com
-********************************************************************************
-Apache License, Version 2.0
-
-Copyright Since [2012] [Luis Majano and Ortus Solutions,Corp]
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-********************************************************************************
-*/
 component hint="Mortgage module Configuration"{
 
 	// Module Properties
@@ -56,20 +33,12 @@ component hint="Mortgage module Configuration"{
 	* Fired when the module is registered and activated.
 	*/
 	function onLoad(){
-		// Let's add ourselves to the main menu in the Modules section
-		var menuService = controller.getWireBox().getInstance("AdminMenuService@cb");
-		// Add Menu Contribution
-		menuService.addSubMenu(topMenu=menuService.MODULES,name="MortgageCalculator",label="Mortgage Calculator",href="#menuService.buildModuleLink('cbMortgageCalculator','home')#");
 	}
 
 	/**
 	* Fired when the module is unregistered and unloaded
 	*/
 	function onUnload(){
-		// Let's remove ourselves to the main menu in the Modules section
-		var menuService = controller.getWireBox().getInstance("AdminMenuService@cb");
-		// Remove Menu Contribution
-		menuService.removeSubMenu(topMenu=menuService.MODULES,name="MortgageCalculator");
 	}
 
 }

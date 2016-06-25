@@ -45,4 +45,41 @@ component{
 
 	}
 
+	/**
+	* The TAEG result
+	*/
+	function showTaeg(){
+
+		event.paramValue( "balance", "0" );
+		event.paramValue( "rata", "0" );
+		event.paramValue( "term", "0" );
+		event.paramValue( "period", 12 );
+		event.paramValue( "isSent", "false" );
+
+		var errors = [];
+
+		if( rc.isSent ){
+			if(!IsNumeric(rc.balance))
+				errors.append("L'importo deve essere un numero!");
+			if(!IsNumeric(rc.rata))
+				errors.append("La rata deve essere un numero!");
+			if(!IsNumeric(rc.term))
+				errors.append("La durata deve essere un numero!");
+			if(!IsNumeric(rc.period))
+				errors.append("La frequenza deve essere un numero!");
+		}
+
+
+		if( errors.len() ){
+			getInstance( "messagebox@cbMessagebox" ).error( messageArray=errors );
+		}
+		if( rc.isSent AND !errors.len() ){
+			rc.taeg = getInstance( "Mortgage@cbMortgageCalculator" ).calculateTAEG( rc.balance, rc.rata, rc.term, rc.period );
+			getInstance("messagebox@cbmessagebox").info("Il TAEG &egrave; #rc.taeg#");
+		}	
+
+		return getInstance("messagebox@cbMessagebox").renderit();
+
+	}
+
 }
