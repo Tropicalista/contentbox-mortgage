@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "ContentBox mortgage calculator",
   "main": "Gruntfile.js",
-  "private": "true",
+  "location" : "https://github.com/Tropicalista/open/archive/master.zip",
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-contrib-compress": "^0.14.0",
