@@ -3,7 +3,7 @@
     "version":"1.0.1",
     "author":"Francesco Pepe",
     "location":"https://github.com/Tropicalista/contentbox-mortgage/archive/master.zip",
-    "directory":"cbMortgageCalculator",
+    "directory":"",
     "createPackageDirectory":true,
     "packageDirectory":"cbMortgageCalculator",
     "homepage":"https://github.com/Tropicalista/contentbox-mortgage",
